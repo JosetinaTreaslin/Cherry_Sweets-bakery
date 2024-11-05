@@ -27,9 +27,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-
 const { width } = Dimensions.get("window");
-const CARD_WIDTH = width * 0.9;
 const Stack = createStackNavigator();
 
 const AnimatedCard = ({ children, style, delay = 0 }) => {
@@ -69,7 +67,6 @@ const AnimatedCard = ({ children, style, delay = 0 }) => {
     </Animated.View>
   );
 };
-
 const StyledButton = ({ title, onPress, type = "primary", icon }) => (
   <TouchableOpacity
     style={[
@@ -96,8 +93,6 @@ const StyledButton = ({ title, onPress, type = "primary", icon }) => (
     </Text>
   </TouchableOpacity>
 );
-
-// Home Screen
 const HomeScreen = ({ navigation }) => {
   const menuItems = [
     {
@@ -178,8 +173,6 @@ const HomeScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-// Basic Components Screen
 const BasicComponents = () => {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [rotateAnim] = useState(new Animated.Value(0));
@@ -272,7 +265,6 @@ const BasicComponents = () => {
     </View>
   );
 };
-
 const LayoutComponents = () => {
   const { width } = useWindowDimensions();
   const isSmallScreen = width < 375;
@@ -425,8 +417,6 @@ const InputComponents = () => {
     </View>
   );
 };
-
-// ListComponents.js
 const ListComponents = () => {
   const listData = [
     { id: "1", title: "Item 1" },
@@ -472,8 +462,6 @@ const ListComponents = () => {
     </View>
   );
 };
-
-// InteractionComponents.js
 const InteractionComponents = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -514,8 +502,6 @@ const InteractionComponents = () => {
     </View>
   );
 };
-
-// FeedbackComponents.js
 const FeedbackComponents = () => {
   return (
     <View style={styles.container}>
@@ -543,7 +529,6 @@ const FeedbackComponents = () => {
     </View>
   );
 };
-
 export default function App() {
   return (
     <NavigationContainer>
