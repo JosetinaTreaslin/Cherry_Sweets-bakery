@@ -19,15 +19,12 @@ import {
   Alert,
   Animated,
   Platform,
-  Dimensions,
-  Image,
   Easing,
   StatusBar,
   ScrollView,
   useWindowDimensions,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-const { width } = Dimensions.get("window");
 const Stack = createStackNavigator();
 
 const AnimatedCard = ({ children, style, delay = 0 }) => {
@@ -67,32 +64,6 @@ const AnimatedCard = ({ children, style, delay = 0 }) => {
     </Animated.View>
   );
 };
-const StyledButton = ({ title, onPress, type = "primary", icon }) => (
-  <TouchableOpacity
-    style={[
-      styles.styledButton,
-      type === "secondary" && styles.styledButtonSecondary,
-    ]}
-    onPress={onPress}
-  >
-    {icon && (
-      <MaterialIcons
-        name={icon}
-        size={24}
-        color={type === "primary" ? "white" : "#3498db"}
-        style={styles.buttonIcon}
-      />
-    )}
-    <Text
-      style={[
-        styles.styledButtonText,
-        type === "secondary" && styles.styledButtonTextSecondary,
-      ]}
-    >
-      {title}
-    </Text>
-  </TouchableOpacity>
-);
 const HomeScreen = ({ navigation }) => {
   const menuItems = [
     {
