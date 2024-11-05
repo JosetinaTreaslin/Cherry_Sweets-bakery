@@ -279,7 +279,6 @@ const LayoutComponents = () => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Flex Direction Demo */}
       <AnimatedCard style={styles.card}>
         <Text style={styles.cardTitle}>Flex Direction</Text>
         <View style={styles.demoSection}>
@@ -838,5 +837,93 @@ const styles = StyleSheet.create({
   feedbackSection: {
     marginVertical: 15,
     alignItems: "center",
+  },
+  demoSection: {
+    backgroundColor: "#f8f9fa",
+    borderRadius: 10,
+    padding: 15,
+    marginTop: 10,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#2c3e50",
+    marginBottom: 10,
+  },
+  box: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+  },
+  tallBox: {
+    width: 50,
+    height: 120,
+    borderRadius: 8,
+  },
+  rowContainer: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  columnContainer: {
+    gap: 10,
+  },
+  spaceBetweenContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  spaceAroundContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  alignItemsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: "100%",
+  },
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+    justifyContent: "center",
+  },
+  gridItem: {
+    backgroundColor: "#3498db",
+    aspectRatio: 1,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+  },
+  gridText: {
+    color: "#fff",
+    marginTop: 5,
+    fontSize: 12,
+  },
+  absoluteContainer: {
+    width: "100%",
+    height: 150,
+    position: "relative",
+  },
+  absoluteBox: {
+    width: 100,
+    height: 100,
+    position: "absolute",
+    borderRadius: 10,
+  },
+  bottomBox: {
+    backgroundColor: "#e74c3c",
+    left: 20,
+    top: 20,
+  },
+  middleBox: {
+    backgroundColor: "#f1c40f",
+    left: 40,
+    top: 40,
+  },
+  topBox: {
+    backgroundColor: "#2ecc71",
+    left: 60,
+    top: 60,
   },
 });
