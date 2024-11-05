@@ -1,4 +1,6 @@
 import React from "react";
+import styles from "../styles";
+
 import { View, Text, Button, ActivityIndicator, Alert } from "react-native";
 export default FeedbackComponents = () => {
   return (

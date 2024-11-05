@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Switch, Button, Alert } from "react-native";
+import styles from "../styles";
+
 export default InputComponents = () => {
   const [text, setText] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);

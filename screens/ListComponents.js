@@ -1,3 +1,8 @@
+import React from "react";
+import { View, Text, FlatList, SectionList } from "react-native";
+import AnimatedCard from "../components/sections/AnimatedCard";
+import styles from "../styles";
+
 export default ListComponents = () => {
   const listData = [
     { id: "1", title: "Item 1" },

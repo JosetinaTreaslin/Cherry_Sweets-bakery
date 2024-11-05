@@ -1,3 +1,4 @@
+// screens/HomeScreen.js
 import React from "react";
 import {
   View,
@@ -7,7 +8,12 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-export default HomeScreen = ({ navigation }) => {
+import styles from "../styles";
+import AnimatedCard from "../components/sections/AnimatedCard";
+import { MaterialIcons } from "@expo/vector-icons";
+
+// Changed from export default HomeScreen = ({ navigation }) to:
+const HomeScreen = ({ navigation }) => {
   const menuItems = [
     {
       name: "Basic",
@@ -46,6 +52,7 @@ export default HomeScreen = ({ navigation }) => {
       description: "Loading indicators and alerts",
     },
   ];
+
   const renderItem = ({ item, index }) => (
     <AnimatedCard delay={index * 100} style={styles.menuCard}>
       <TouchableOpacity
@@ -86,3 +93,6 @@ export default HomeScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+// Separate export statement
+export default HomeScreen;

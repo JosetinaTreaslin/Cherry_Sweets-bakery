@@ -9,6 +9,8 @@ import {
   Alert,
 } from "react-native";
 import AnimatedCard from "../components/sections/AnimatedCard";
+import styles from "../styles";
+
 export default InteractionComponents = () => {
   const [modalVisible, setModalVisible] = useState(false);
 

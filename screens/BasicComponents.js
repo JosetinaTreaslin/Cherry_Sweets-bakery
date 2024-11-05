@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Animated, Easing } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import AnimatedCard from "../components/sections/AnimatedCard";
+import styles from "../styles";
 export default BasicComponents = () => {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [rotateAnim] = useState(new Animated.Value(0));
