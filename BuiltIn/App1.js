@@ -1,4 +1,3 @@
-/*cd BuiltIn  npm i  npm start  */
 import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -75,33 +74,33 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       name: "Menu Card",
-      screen: "BasicComponents1",
-      icon: "widgets",
-      description: "Taste viriety of foods",
+      screen: "InputComponents",
+      icon: "input",
+      description: "More vieriety, less price!! available all time ",
     },
     {
       name: "Order",
-      screen: "InputComponents",
-      icon: "input",
-      description: "Fast delivery",
+      screen: "ListComponents",
+      icon: "list",
+      description: "Fast delivery ",
     },
     {
       name: "News",
       screen: "LayoutComponents",
       icon: "dashboard",
-      description: "Learn about the food items",
+      description: "learn about the food items you take in your day-to-day-life",
+    },
+    {
+      name: "Interaction",
+      screen: "InteractionComponents",
+      icon: "touch-app",
+      description: "Touchable components and gestures",
     },
     {
       name: "Feedback",
       screen: "FeedbackComponents",
       icon: "feedback",
-      description: "Support and interact",
-    },
-    {
-      name: "settings",
-      screen: "InteractionComponents",
-      icon: "touch-app",
-      description: "Change app settings",
+      description: "Feedback helps us to support and interact with you ",
     },
   ];
 
@@ -130,13 +129,11 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Cherry Sweets and Bakery </Text>
-        
+        <Text style={styles.headerTitle}>React Native Components</Text>
         <Text style={styles.headerSubtitle}>
-          The Food Explorer
+          Interactive Component Explorer
         </Text>
       </View>
-      
       <FlatList
         data={menuItems}
         renderItem={renderItem}
@@ -177,110 +174,66 @@ const BasicComponents = () => {
     ]).start();
   }, []);
 
-  const sectionData = [
-    { title: "Cake Bites", data: ["Cheese Cake           Rs.50","Berry Topped           Rs.65", "Chocolate           Rs.50"] },
-    { title: "Beverages", data: ["Hot Coco           Rs.30", "Fruit Shacke           Rs.40"] },
-    { title: "Breads", data: ["Barbari Bread           Rs.50", "Chickenpea Bread           Rs.40", "Sourdrough bread           Rs.90"] },
-    { title: "Burger", data: ["Pug Burger           Rs.50 ", "Fruit Burger           Rs.60"] },
-    { title: "Desserts", data: ["Croissant           Rs.50","Peacan Pie           Rs.40", "Molasses Pie           Rs.40"] },
-    { title: "Ice Creams", data: ["Cookie Dough           Rs.50", "cotton Candy           Rs.60 ", "Salted Caramel            Rs.55"] },
-  ];
-
   const spin = rotateAnim.interpolate({
     inputRange: [0, 1],
     outputRange: ["0deg", "360deg"],
   });
 
   return (
-    <ScrollView style={styles.scrollView}>
     <View style={styles.container}>
-      <View style={styles.container}>
-        <AnimatedCard style={styles.card}>
-          <Text style={styles.cardTitle}>SectionList Example</Text>
-          <SectionList
-            sections={sectionData}
-            renderItem={({ item }) => (
-              <View style={styles.listItem}>
-                <Text>{item}</Text>
-              </View>
-            )}
-            renderSectionHeader={({ section }) => (
-              <Text style={styles.sectionHeader}>{section.title}</Text>
-            )}
-            keyExtractor={(item, index) => index}
-          />
-        </AnimatedCard>
-      </View>
+      <AnimatedCard style={styles.card}>
+        <Text style={styles.cardTitle}>Text Styling</Text>
+        <View style={styles.demoSection}>
+          <Text style={styles.heading}>Typography Examples</Text>
+          <Text style={styles.subheading}>
+            Various text styles and formatting
+          </Text>
+          <Text style={styles.paragraph}>
+            This is a paragraph demonstrating text styling in React Native. We
+            can make text <Text style={styles.bold}>bold</Text>,
+            <Text style={styles.italic}> italic</Text>, or
+            <Text style={styles.colored}> colored</Text>.
+          </Text>
+        </View>
+      </AnimatedCard>
+
+      <AnimatedCard style={styles.card} delay={200}>
+        <Text style={styles.cardTitle}>Animated Components</Text>
+        <View style={styles.demoSection}>
+          <Animated.View
+            style={[styles.animatedBox, { transform: [{ rotate: spin }] }]}
+          >
+            <MaterialIcons name="star" size={32} color="white" />
+          </Animated.View>
+        </View>
+      </AnimatedCard>
+
+      <AnimatedCard style={styles.card} delay={400}>
+        <Text style={styles.cardTitle}>Flexible Layouts</Text>
+        <View style={styles.flexDemo}>
+          {["#FF9999", "#99FF99", "#9999FF"].map((color, index) => (
+            <Animated.View
+              key={index}
+              style={[
+                styles.flexBox,
+                { backgroundColor: color },
+                {
+                  opacity: fadeAnim,
+                  transform: [
+                    {
+                      translateY: fadeAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [50, 0],
+                      }),
+                    },
+                  ],
+                },
+              ]}
+            />
+          ))}
+        </View>
+      </AnimatedCard>
     </View>
-    </ScrollView>
-  );
-};
-const BasicComponents1 = () => {
-  const [fadeAnim] = useState(new Animated.Value(0));
-  const [rotateAnim] = useState(new Animated.Value(0));
-
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true,
-      }),
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(rotateAnim, {
-            toValue: 1,
-            duration: 2000,
-            easing: Easing.linear,
-            useNativeDriver: true,
-          }),
-          Animated.timing(rotateAnim, {
-            toValue: 0,
-            duration: 2000,
-            easing: Easing.linear,
-            useNativeDriver: true,
-          }),
-        ])
-      ),
-    ]).start();
-  }, []);
-
-  const sectionData = [
-    { title: "Cake Bites", data: ["Cheese Cake           Rs.50", "Strawberry Cake           Rs.60", "Bon Buns           Rs.20", "Berry Topped           Rs.49", "Chocolate           Rs.50"] },
-    { title: "Beverages", data: ["Bottled Water           Rs.30 ", "Milkshake            Rs.60", "Hot Coco           Rs.30", "Coffee Latte           Rs.20", "Fruit Shacke           Rs.40"] },
-    { title: "Breads", data: ["Banana Bread           Rs.50 ", "Barbari Bread           Rs.50", "Chickenpea Bread           Rs.40", "Sourdrough bread           Rs.90"] },
-    { title: "Burger", data: ["Pug Burger           Rs.50 ", "Fruit Burger           Rs.60", "Beef Burger           Rs.70", "Cheese Burger           Rs.50", "Chile Stuffed           Rs.40", "Vegan Burger           Rs.60"] },
-    { title: "Desserts", data: ["Croissant           Rs.50", "Custards           Rs.70", "Apple Pie           Rs.60", "Peacan Pie           Rs.40", "Gulab Jamun           Rs.60", "Molasses Pie           Rs.40"] },
-    { title: "Ice Creams", data: ["Cookie Dough           Rs.50", "Vanilla Bean           Rs.70", "cotton Candy           Rs.60 ", "Peanut Butter           Rs.40", "Salted Caramel            Rs.55", "Coconut Crush           Rs.65"] },
-  ];
-
-  const spin = rotateAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
-
-  return (
-    <ScrollView style={styles.scrollView}>
-    <View style={styles.container}>
-      <View style={styles.container}>
-        <AnimatedCard style={styles.card}>
-          <Text style={styles.cardTitle}>SectionList Example</Text>
-          <SectionList
-            sections={sectionData}
-            renderItem={({ item }) => (
-              <View style={styles.listItem}>
-                <Text>{item}</Text>
-              </View>
-            )}
-            renderSectionHeader={({ section }) => (
-              <Text style={styles.sectionHeader}>{section.title}</Text>
-            )}
-            keyExtractor={(item, index) => index}
-          />
-        </AnimatedCard>
-      </View>
-    </View>
-    </ScrollView>
   );
 };
 const LayoutComponents = () => {
@@ -288,56 +241,76 @@ const LayoutComponents = () => {
   const isSmallScreen = width < 375;
 
   return (
-    <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="handled">
-
-      {/* Justify Content Demo */}
-      <AnimatedCard style={styles.card} delay={100}>
-        <Text style={styles.cardTitle}>Today's headings</Text>
+    <ScrollView style={styles.container}>
+      <AnimatedCard style={styles.card}>
+        <Text style={styles.cardTitle}>Flex Direction</Text>
         <View style={styles.demoSection}>
-          <Text style={styles.sectionTitle}>Just now </Text>
-          <View style={styles.spaceBetweenContainer}>
-            <View style={[styles.box0, { backgroundColor: "#9b59b6" }]} />
-            <View style={[styles.box0, { backgroundColor: "#f1c40f" }]} />
+          <Text style={styles.sectionTitle}>Row</Text>
+          <View style={styles.rowContainer}>
+            <View style={[styles.box, { backgroundColor: "#3498db" }]} />
+            <View style={[styles.box, { backgroundColor: "#e74c3c" }]} />
+            <View style={[styles.box, { backgroundColor: "#2ecc71" }]} />
           </View>
 
-          <Text style={[styles.sectionTitle, { marginTop: 20 }]}>
-            international news 
-          </Text>
-          <View style={styles.spaceAroundContainer}>
-            <View style={[styles.box0, { backgroundColor: "#9b59b6" }]} />
-            <View style={[styles.box0, { backgroundColor: "#f1c40f" }]} />
-            <View style={[styles.box0, { backgroundColor: "#1abc9c" }]} />
+          <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Column</Text>
+          <View style={styles.columnContainer}>
+            <View style={[styles.box, { backgroundColor: "#3498db" }]} />
+            <View style={[styles.box, { backgroundColor: "#e74c3c" }]} />
+            <View style={[styles.box, { backgroundColor: "#2ecc71" }]} />
           </View>
         </View>
       </AnimatedCard>
 
-      <AnimatedCard style={styles.card}>
+      {/* Justify Content Demo */}
+      <AnimatedCard style={styles.card} delay={100}>
+        <Text style={styles.cardTitle}>Justify Content</Text>
         <View style={styles.demoSection}>
-
-        <View style={styles.columnContainer}>
-          <Text style={styles.sectionTitle}>News Today</Text>
-          <View style={styles.rowContainer}>
-            <View style={[styles.box0, { backgroundColor: "#3498db" }]} />
-            <View style={[styles.box1, { backgroundColor: "#e74c3c" }]} />
-            <View style={[styles.box1, { backgroundColor: "#2ecc71" }]} />
+          <Text style={styles.sectionTitle}>Space Between</Text>
+          <View style={styles.spaceBetweenContainer}>
+            <View style={[styles.box, { backgroundColor: "#9b59b6" }]} />
+            <View style={[styles.box, { backgroundColor: "#f1c40f" }]} />
+            <View style={[styles.box, { backgroundColor: "#1abc9c" }]} />
           </View>
 
-
-          <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Popular </Text>
-          <View style={styles.rowContainer}>
-            <View style={[styles.box2, { backgroundColor: "#3498db" }]} />
-            <View style={[styles.box2, { backgroundColor: "#e74c3c" }]} />
-          </View>
-          
+          <Text style={[styles.sectionTitle, { marginTop: 20 }]}>
+            Space Around
+          </Text>
+          <View style={styles.spaceAroundContainer}>
+            <View style={[styles.box, { backgroundColor: "#9b59b6" }]} />
+            <View style={[styles.box, { backgroundColor: "#f1c40f" }]} />
+            <View style={[styles.box, { backgroundColor: "#1abc9c" }]} />
           </View>
         </View>
-      </AnimatedCard>    
+      </AnimatedCard>
+
+      {/* Align Items Demo */}
+      <AnimatedCard style={styles.card} delay={200}>
+        <Text style={styles.cardTitle}>Align Items</Text>
+        <View style={[styles.demoSection, { height: 200 }]}>
+          <Text style={styles.sectionTitle}>Different Alignments</Text>
+          <View style={styles.alignItemsContainer}>
+            <View style={[styles.tallBox, { backgroundColor: "#34495e" }]} />
+            <View
+              style={[
+                styles.tallBox,
+                { backgroundColor: "#e67e22", height: 100 },
+              ]}
+            />
+            <View
+              style={[
+                styles.tallBox,
+                { backgroundColor: "#16a085", height: 60 },
+              ]}
+            />
+          </View>
+        </View>
+      </AnimatedCard>
 
       {/* Responsive Layout Demo */}
       <AnimatedCard style={styles.card} delay={300}>
-        <Text style={styles.cardTitle}>Mestories</Text>
+        <Text style={styles.cardTitle}>Responsive Grid</Text>
         <View style={styles.demoSection}>
-          <Text style={styles.sectionTitle}>Case 1</Text>
+          <Text style={styles.sectionTitle}>Adapts to Screen Size</Text>
           <View style={styles.gridContainer}>
             {[1, 2, 3, 4].map((item) => (
               <View
@@ -348,7 +321,7 @@ const LayoutComponents = () => {
                 ]}
               >
                 <MaterialIcons name="apps" size={24} color="#fff" />
-                <Text style={styles.gridText}>Data {item}</Text>
+                <Text style={styles.gridText}>Item {item}</Text>
               </View>
             ))}
           </View>
@@ -357,9 +330,9 @@ const LayoutComponents = () => {
 
       {/* Absolute Positioning Demo */}
       <AnimatedCard style={styles.card} delay={400}>
-        <Text style={styles.cardTitle}>More </Text>
+        <Text style={styles.cardTitle}>Absolute Positioning</Text>
         <View style={[styles.demoSection, { height: 200 }]}>
-          <Text style={styles.sectionTitle}>See every news</Text>
+          <Text style={styles.sectionTitle}>Layered Elements</Text>
           <View style={styles.absoluteContainer}>
             <View style={[styles.absoluteBox, styles.bottomBox]} />
             <View style={[styles.absoluteBox, styles.middleBox]} />
@@ -373,15 +346,14 @@ const LayoutComponents = () => {
 const InputComponents = () => {
   const [text, setText] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
       <AnimatedCard style={styles.card}>
-        <Text style={styles.cardTitle}>Order</Text>
+        <Text style={styles.cardTitle}>Input Controls</Text>
 
         <View style={styles.inputSection}>
-          <Text style={styles.label}>enter code:</Text>
+          <Text style={styles.label}>Text Input:</Text>
           <TextInput
             style={styles.input}
             value={text}
@@ -392,8 +364,9 @@ const InputComponents = () => {
         </View>
 
         <View style={styles.switchSection}>
+          <Text style={styles.label}>Switch:</Text>
           <View style={styles.switchRow}>
-            <Text>Fast Delivery:            + Rs.20</Text>
+            <Text>Toggle me</Text>
             <Switch
               value={isEnabled}
               onValueChange={setIsEnabled}
@@ -402,26 +375,15 @@ const InputComponents = () => {
             />
           </View>
         </View>
-        <TouchableHighlight
-          style={styles.touchable}
-          onPress={() => setModalVisible(true)}
-          underlayColor="#DDDDDD"
-        >
-          <Text style={styles.touchableText}>Order</Text>
-        </TouchableHighlight>
-        <Modal
-          visible={modalVisible}
-          animationType="slide"
-          transparent={true}
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalText}>Ordered Successfully</Text>
-              <Button title="Close" onPress={() => setModalVisible(false)} />
-            </View>
-          </View>
-        </Modal>        
+
+        <View style={styles.buttonSection}>
+          <Button
+            title="Show Alert"
+            onPress={() =>
+              Alert.alert("Button Pressed", "This is a basic alert")
+            }
+          />
+        </View>
       </AnimatedCard>
     </View>
   );
@@ -477,72 +439,23 @@ const InteractionComponents = () => {
   return (
     <View style={styles.container}>
       <AnimatedCard style={styles.card}>
-        <Text style={styles.cardTitle}>modes</Text>
+        <Text style={styles.cardTitle}>Interactive Elements</Text>
 
         <TouchableOpacity
           style={styles.touchable}
-          onPress={() => Alert.alert("Warning", "Not available now")}
+          onPress={() => Alert.alert("Pressed!", "TouchableOpacity pressed")}
         >
-          <Text style={styles.touchableText}>select </Text>
+          <Text style={styles.touchableText}>Press Me (TouchableOpacity)</Text>
         </TouchableOpacity>
-      </AnimatedCard>
-    </View>
-  );
-};
-const FeedbackComponents = () => {
-    const [text, setText] = useState("");
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [rotateAnim] = useState(new Animated.Value(0));
 
-useEffect(() => {
-  Animated.loop(
-    Animated.sequence([
-      Animated.timing(rotateAnim, {
-        toValue: 1,
-        duration: 2000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }),
-      Animated.timing(rotateAnim, {
-        toValue: 0,
-        duration: 2000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }),
-    ])
-  ).start();
-}, []);
-
-const spin = rotateAnim.interpolate({
-  inputRange: [0, 1],
-  outputRange: ["0deg", "360deg"],
-});
-
-  return (
-    <View style={styles.container}>
-      <AnimatedCard style={styles.card}>
-        <Text style={styles.cardTitle}>Feedback and Reviews</Text>
-
-        <View style={styles.inputSection}>
-          <Text style={styles.label}>Feel free to give your Feedback and Reviews</Text>
-          <TextInput
-              style={[styles.input, styles.textarea]}
-              value={text}
-              onChangeText={setText}
-              placeholder="Type something..."
-              placeholderTextColor="#999"
-              multiline={true}
-              numberOfLines={4}
-              />
-        </View>
         <TouchableHighlight
           style={styles.touchable}
           onPress={() => setModalVisible(true)}
           underlayColor="#DDDDDD"
         >
-          <Text style={styles.touchableText}>Submit</Text>
+          <Text style={styles.touchableText}>Show Modal</Text>
         </TouchableHighlight>
+
         <Modal
           visible={modalVisible}
           animationType="slide"
@@ -551,34 +464,26 @@ const spin = rotateAnim.interpolate({
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalText}>Feedback has been Successfully</Text>
+              <Text style={styles.modalText}>This is a Modal</Text>
               <Button title="Close" onPress={() => setModalVisible(false)} />
             </View>
           </View>
-        </Modal>        
-      </AnimatedCard>  
-      <Text style={styles.cardTitle}>  Rating:</Text>   
-      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-        {[...Array(5)].map((_, index) => (
-          <Animated.View key={index} style={[styles.animatedBox, { width: 40, height: 40, transform: [{ rotate: spin }] }]}>
-            <MaterialIcons name="star" size={24} color="white" />
-          </Animated.View>
-        ))}
-      </View>
- 
-
+        </Modal>
+      </AnimatedCard>
     </View>
   );
 };
-const Components_To_Explore = () => {
-<AnimatedCard style={styles.card}>
+const FeedbackComponents = () => {
+  return (
+    <View style={styles.container}>
+      <AnimatedCard style={styles.card}>
         <Text style={styles.cardTitle}>Loading & Feedback</Text>
-        
+
         <View style={styles.feedbackSection}>
           <Text style={styles.label}>Activity Indicator:</Text>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
-        
+
         <View style={styles.feedbackSection}>
           <Text style={styles.label}>Alert Example:</Text>
           <Button
@@ -592,8 +497,9 @@ const Components_To_Explore = () => {
           />
         </View>
       </AnimatedCard>
-
-}
+    </View>
+  );
+};
 export default function App() {
   return (
     <NavigationContainer>
@@ -621,23 +527,18 @@ export default function App() {
           name="BasicComponents"
           component={BasicComponents}
           options={{
-            title: "TOP FOOD",
+            title: "Basic Components",
           }}
-        />
-                <Stack.Screen
-          name="BasicComponents1"
-          component={BasicComponents1}
-          options={{title: "MENU CARD",}}
         />
         <Stack.Screen
           name="InputComponents"
           component={InputComponents}
-          options={{ title: "ORDER" }}
+          options={{ title: "Input Components" }}
         />
         <Stack.Screen
           name="LayoutComponents"
           component={LayoutComponents}
-          options={{ title: "NEWS" }}
+          options={{ title: "Layout Components" }}
         />
         <Stack.Screen
           name="ListComponents"
@@ -647,7 +548,7 @@ export default function App() {
         <Stack.Screen
           name="InteractionComponents"
           component={InteractionComponents}
-          options={{ title: "SETTINGS" }}
+          options={{ title: "Interactions" }}
         />
         <Stack.Screen
           name="FeedbackComponents"
@@ -905,31 +806,11 @@ const styles = StyleSheet.create({
     color: "#2c3e50",
     marginBottom: 10,
   },
-  box0: {
-    width: 100, 
-    height: 100, 
-    margin: 10,
-    borderRadius: 10, 
+  box: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
   },
-  box1: {
-    width: 150, 
-    height: 100, 
-    margin: 10,
-    borderRadius: 10, 
-  },
-
-    box2: {
-      width: 100, 
-      height: 150, 
-      margin: 10,
-      borderRadius: 10, 
-    }, 
-    box3: {
-      width: 150, 
-      height: 100, 
-      margin: 10,
-      borderRadius: 10, 
-    }, 
   tallBox: {
     width: 50,
     height: 120,
